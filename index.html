@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Railsの環境について 1.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/s6.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/jquery.touchwipe.min.js"></script>
+    <script type="text/javascript" src="_static/s6.js"></script>
+    <script type="text/javascript" src="_static/s6-sphinx.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="index.html#document-index">Railsの環境について 1.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rails">
+<h1>Railsの環境を簡単に構築してみた話<a class="headerlink" href="#rails" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {h1: {fontSize:'120%', textAlign:'center', margin:'30% auto'}}});}</script>
+<div class="section" id="id1">
+<h2>お前誰よ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>新藤康正 (&#64;tinypiece)</li>
+<li>一応元インフラエンジニア</li>
+<li>Rails を始めて4ヶ月<ul>
+<li>寄り道ばかりで本題はあまり進まず・・・</li>
+</ul>
+</li>
+<li>今回の発表も内容よりプレゼンの作り方の方が面白くて・・・</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id2">
+<h2>Rails の開発環境について<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>当然のことを書きます<ul>
+<li>Rails を動かすためには Ruby が動いている必要があります</li>
+<li>Ruby が動くためにはOSに Ruby を動かすために必要なライブラリ群が必要です</li>
+</ul>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {'ul/li/ul/li': {display:'none'}}});}</script>
+<script>
+if(typeof s6 != 'undefined'){s6.page({actions: [['ul/li/ul/li[0]', 'fade in', '0.3'],
+['ul/li/ul/li[1]', 'fade in', '0.3']]});}</script>
+</div>
+<div class="section" id="id3">
+<h2>でも、これって結構重要だったりします<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {h2: {fontSize:'80%', textAlign:'center', margin:'10% auto'}}});}</script>
+</div>
+<div class="section" id="id4">
+<h2>私が Rails を始めた時<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li>どこに環境を作ろう?</li>
+<li>Ruby のバージョンは何が良いか?</li>
+<li>Rails のインストールはどうする?</li>
+</ol>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {'ol/li': {display:'none'}}});}</script>
+<script>
+if(typeof s6 != 'undefined'){s6.page({actions: [['ol/li[0]', 'fade in', '0.3'],
+['ol/li[1]', 'fade in', '0.3'],
+['ol/li[2]', 'fade in', '0.3']]});}</script>
+</div>
+<div class="section" id="id5">
+<h2>どこに環境を作ろう?<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>まずは手元のパソコンかな<ul>
+<li>Windows/Mac/Linux/Android
+イロイロある</li>
+</ul>
+</li>
+<li>OS 毎にインストール方法も環境設定も違うね・・・</li>
+</ul>
+</div>
+<div class="section" id="ruby">
+<h2>Ruby のバージョンは?<a class="headerlink" href="#ruby" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>新しい方が良いに決まってるよね</li>
+<li>新しい機能も使えるだろうし</li>
+<li>古いサンプルだと使えない？<ul>
+<li>それはしょうがないよね・・・</li>
+</ul>
+</li>
+<li>アップデートとかどうするんだろ・・・</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>Rails のバージョンはどうする<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>これも新しい方が・・・</li>
+<li>でも使い慣れたバージョンの方が・・・</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>なんか面倒くさくなってきた<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {h2: {fontSize:'80%', textAlign:'center', margin:'10% auto'}}});}</script>
+</div>
+<div class="section" id="id8">
+<h2>簡単に環境を作るなら<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>Cloud9</li>
+<li>Rails チュートリアルに載ってた</li>
+<li>簡単に使い始められた</li>
+<li>なんか出来たような <strong>気がする</strong></li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {'ul/li': {display:'none'}}});}</script>
+<script>
+if(typeof s6 != 'undefined'){s6.page({actions: [['ul/li[0]', 'fade in', '0.3'],
+['ul/li[1]', 'fade in', '0.3'],
+['ul/li[2]', 'fade in', '0.3'],
+['ul/li[3]', 'fade in', '0.3']]});}</script>
+</div>
+<div class="section" id="id9">
+<h2>気がする・・・なんですよね<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {h2: {fontSize:'80%', textAlign:'center', margin:'20% auto'}}});}</script>
+</div>
+<div class="section" id="id10">
+<h2>ちゃんと調べてみよう<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>まずは環境を固定<ul>
+<li>自宅のどの PC でも同じ環境を使いたい</li>
+<li>あわよくば会社の PC でも</li>
+<li>インストールは簡単な方が良い</li>
+<li>Ruby や Rails のバージョンはイロイロ選びたい</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h2>私にあった答えはこれだった<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>OS<ul>
+<li>Linux (一番良く使うから)</li>
+<li>Ruby のインストールに必要なライブラリは簡単に揃えられる</li>
+<li>ライブラリは極力 OS のパッケージで管理</li>
+</ul>
+</li>
+<li>Ruby<ul>
+<li>rbenv を使って簡単管理</li>
+<li>rvm というやつもあるらしいけど・・・</li>
+</ul>
+</li>
+<li>Rails<ul>
+<li>まずはサンプルで使用しているバージョンに合わせよう</li>
+</ul>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'50%'}}});}</script>
+</div>
+<div class="section" id="vps">
+<h2>適当な VPS を借りる<a class="headerlink" href="#vps" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>月額 1000 円くらいでもあります</li>
+<li>クラウドサービスだと時間単位で借りられるものも</li>
+<li>自由に使えるけど、最低限のセキュリティはしっかりしたい</li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h2>Ruby はバージョン管理出来るツールを導入<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>rbenv と rvm というのが主流らしい</li>
+<li>rbenv は Ruby の環境を閉じ込められるのが最大の魅力</li>
+<li>rvm は高機能・・・でもそんなにいらない<ul>
+<li>OS のコマンドを上書くような動作もするし気持ち悪い</li>
+</ul>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id13">
+<h2>私の今の環境<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>クラウドサービス<ul>
+<li>サクラインターネット使ってます</li>
+</ul>
+</li>
+<li>CentOS7<ul>
+<li>デフォルトでfirewalldが動いています</li>
+</ul>
+</li>
+<li>rbenv を使っています</li>
+<li>root 権限をもらえるので自由度は非常に高いです</li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>環境構築(1)<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>OSインストール</li>
+<li>アップデート<ul>
+<li>最初は無条件で最新に</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># yum update</span>
+</pre></div>
+</div>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id15">
+<h2>環境構築(2)<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>作業用ユーザ作成<ul>
+<li>root でログインはダメ、ゼッタイ</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># useradd tinypiece</span>
+<span class="c1"># passwd tinypiece</span>
+<span class="c1"># usermod -G wheel tinypiece</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>必要に応じてパスワード付きの公開鍵認証にしておくと尚可</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id16">
+<h2>環境構築(3)<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">sshd の制限</p>
+<ul class="simple">
+<li>root ログインは拒否して置く(これは最低限)<ul>
+<li>PermitRootLogin</li>
+</ul>
+</li>
+<li>パスワードログインも拒否して置きましょう<ul>
+<li>PasswordAuthentication</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo systemctl restart sshd.service
+</pre></div>
+</div>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id17">
+<h2>環境構築(4)<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">firewall の設定</p>
+<ul>
+<li><p class="first">CentOS7 はデフォルトでSSH(22)以外ポート以外を拒否しています</p>
+</li>
+<li><p class="first">念のため確認しておいてあげましょう</p>
+<div class="highlight-bas"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --list-all
+[sudo] password for tinypiece:
+public (default, active)
+  interfaces: eth0
+  sources:
+  services: dhcpv6-client ssh
+  ports:
+  masquerade: no
+  forward-ports:
+  icmp-blocks:
+  rich rules:
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}
+ul/li: {fontSize:'30%'}}});}</script>
+</div>
+<div class="section" id="id18">
+<h2>環境構築(5)<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">Ruby が動作するために必要なライブラリをインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo yum install openssl-devel readline-devel
+</pre></div>
+</div>
+</li>
+<li><p class="first">rubyenv のインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/sstephenson/rbenv.git
+  ~/.rbenv
+</pre></div>
+</div>
+<p>※実際は1行です</p>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id19">
+<h2>環境構築(6)<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">環境設定</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt;
+   ~/.bash_profile
+$ <span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(rbenv init -)&quot;&#39;</span> &gt;&gt; ~/.bash_profile
+$ <span class="nb">exec</span> <span class="nv">$SHELL</span> -l
+</pre></div>
+</div>
+</li>
+<li><p class="first">とりあえず、バージョン確認</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rbenv --version
+rbenv 1.0.0-19-g29b4da7
+</pre></div>
+</div>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id20">
+<h2>環境構築(7)<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">ruby-build のインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ git clone https://github.com/sstephenson/ruby-build.git
+   ~/.rbenv/plugins/ruby-build
+</pre></div>
+</div>
+<p>※実際は1行です</p>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id21">
+<h2>環境構築(8)<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">インストール可能なバージョンを確認</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rbenv install --list
+</pre></div>
+</div>
+</li>
+<li><p class="first">バージョンを指定して Ruby をインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rbenv install -v 2.2.4
+</pre></div>
+</div>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id22">
+<h2>環境構築(9)<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">rbenv の状態を再読み込み</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rbenv rehash
+</pre></div>
+</div>
+</li>
+<li><p class="first">インストール済みのバージョンを確認</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ rbenv versions
+</pre></div>
+</div>
+</li>
+<li><p class="first">使用するバージョンを先ほどインストールした最新版に設定</p>
+<blockquote>
+<div><p>$ rbenv global</p>
+</div></blockquote>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+<div class="section" id="id23">
+<h2>環境構築(10)<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul>
+<li><p class="first">Rails のインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ gem install rails -v 4.2.2
+</pre></div>
+</div>
+</li>
+<li><p class="first">とりあえず動かしてみる</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir workspace
+$ <span class="nb">cd</span> workspace/
+$ rails _4.2.2_ new hello_app
+</pre></div>
+</div>
+</li>
+</ul>
+<script>
+if(typeof s6 != 'undefined'){s6.page({styles: {ul: {fontSize:'70%'}}});}</script>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="index.html#document-index">Railsの環境について 1.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    <span>Railsの環境について 1.0 ドキュメント :: 2016, tinypiece</span><br />
+    <span class="hidden">操作方法: 上下左右キーで操作です</span>
+</div>
+
+  </body>
+</html>
